@@ -1,0 +1,12 @@
+@import 'bootstrap';
+
+
+/* .clickDanger:hover{
+    color: red !important;
+    
+} */
+
+.favorited {
+    color: red; /* or fill: red; if using SVG */
+    /* Adjust other styles as needed */
+}
