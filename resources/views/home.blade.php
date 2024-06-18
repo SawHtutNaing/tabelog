@@ -9,7 +9,8 @@
     <div class="row">
         <?php 
         use App\Models\Meal;
-        $categories  = Meal::categories()->toArray();
+        $categories  = Meal::categories();
+
         ?>
         
         <h1>Favorites</h1>
@@ -46,7 +47,9 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 @foreach ($categories as $category)
-                <a class="dropdown-item" href="{{ route('home', ['category' => $category]) }}">{{ $category }}</a>
+                <a class="dropdown-item" href="{{ route('home', ['category' => $category['id']]) }}">
+               {{$category['category_name']}}
+                </a>
                 @endforeach
             </div>
         </div>

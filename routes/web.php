@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('booking', function () {
         $bookings = Booking::where('user_id', auth()->id())->with('meal')->get();
-        // dd($bookings);
+
 
         return view('booking', compact('bookings'));
     })->name('booking');

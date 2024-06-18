@@ -11,19 +11,29 @@ class Meal extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
+    public function getCategory()
+    {
+        return   $this->belongsTo(Category::class, 'category', 'id');
+    }
     public static function categories()
     {
-        return Meal::distinct()->pluck('category');
+        $meals = Meal::all();
+        $arr = [];
+        foreach ($meals as $meal) {
+            // dd($meal->getCategory());
+            $arr[] =
+                [
+                    'id' => $meal->id,
+                    'category_name' => Category::where('id', $meal->category)->first()->name
+                ];
+        }
+        return $arr;
     }
     public function bookings()
     {
         return $this->hasMany(Booking::class);
     }
-    public function getCategory()
-    {
-        return   $this->belongsTo(Category::class, 'category', 'id');
-    }
+
     public function getThumbnailUrlAttribute()
     {
         return Storage::url($this->thumbnail);

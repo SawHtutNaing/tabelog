@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -31,7 +32,13 @@ class BookingResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('user.name'),
+                TextColumn::make('meal.name'),
+                TextColumn::make('item_number'),
+                TextColumn::make('total_price'),
+                TextColumn::make('booking_time'),
+
+
             ])
             ->filters([
                 //
