@@ -17,6 +17,7 @@ Route::prefix('auth')->group(function () {
     Route::get('/login', fn () => view('auth/login'))->name('auth.login');
     Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 
+
     Route::post('/register', [AuthController::class, 'makeRegister'])->name('auth.register');
     Route::get('/register', [AuthController::class, 'register'])->name('auth.register');
 });
@@ -52,3 +53,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/meals/{id}', [MealController::class, 'show'])->name('meals.show')->middleware('auth');
 Route::post('/order_meal/{id}', [BookingController::class, 'store'])->name('order_meal')->middleware('auth');
+Route::get('/apply-premium', fn () => view('users/apply_premium'))->name('users.apply_permium')->middleware('auth');
+
+//apply for premium 
+Route::post('/apply-premium', [PaymentController::class, 'getPremium'])->name('users.apply_permium')->middleware('auth');

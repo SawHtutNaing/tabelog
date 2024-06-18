@@ -29,11 +29,14 @@ class BookingController extends Controller
 
         $res = \Payjp\Charge::create(
             [
-                "customer" => $user->name,
-                "amount" =>  $booking->total_price,
+                "customer" => $user->token,
+                "amount" =>  '445',
+                // "amount" =>  $booking->total_price,
+
                 "currency" => 'jpy'
             ]
         );
+
         return redirect()->route('home');
     }
 }

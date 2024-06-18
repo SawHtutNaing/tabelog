@@ -30,8 +30,14 @@
                                 </div>
                             </div>
                             @auth
+                            @if(Auth::user()->token == '')
+                            <a href="{{route('mypage.register_card')}}" class="nav-item nav-link">Apply Card </a>
+                            
+                            @endif
+                            @endauth
+                            @auth
                             @if(Auth::user()->user_type == 'normal')
-                            <a href="{{route('mypage.register_card')}}" class="nav-item nav-link">Get Premium</a>
+                            <a href="{{route('users.apply_permium')}}" class="nav-item nav-link">Apply Premium </a>
                             
                             @endif
                             @endauth

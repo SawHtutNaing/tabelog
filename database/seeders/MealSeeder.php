@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cagegory;
+use App\Models\Category;
 use App\Models\Meal;
 use Illuminate\Support\Facades\Http;
 
@@ -17,13 +19,22 @@ class MealSeeder extends Seeder
     {
         $response = Http::get('https://www.themealdb.com/api/json/v1/1/search.php?s');
         $php_array = $response->json()['meals'];
-
-
+        $categoies = [];
+        foreach ($php_array as $item) {
+            $categoies[] = $item['strArea'];
+        }
+        $categoies = array_unique($categoies);
+        foreach ($categoies as $category) {
+            Category::create([
+                'name' => $category
+            ]);
+        }
         $meals = [];
         for ($i = 0; $i < count($php_array); $i++) {
+            // dd(Category::where('name', $php_array[$i]['strArea'])->get()->pluck('id'));
             $meals[$i] = [
                 'name' => $php_array[$i]['strMeal'],
-                'category' => $php_array[$i]['strArea'],
+                'category' => Category::where('name', $php_array[$i]['strArea'])->pluck('id')->first(),
                 'price' => rand(1111, 9999),
                 'thumbnail' => $php_array[$i]['strMealThumb'],
             ];

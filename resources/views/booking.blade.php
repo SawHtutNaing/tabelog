@@ -19,9 +19,10 @@
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </div>
                 <div class="card-body">
-                    <p>Booking Date: {{ $booking->booking_date }}</p>
+                    <p>Booking Date: {{ date('Y-m-d', strtotime($booking->booking_time)); }}</p>
                     <p>Number of Items: {{ $booking->item_number }}</p>
                     <p>Total Price: {{ $booking->total_price }}</p>
+                    
                 </div>
             </div>
         </div>

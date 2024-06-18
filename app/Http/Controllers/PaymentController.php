@@ -59,4 +59,27 @@ class PaymentController extends Controller
 
         return redirect()->route('home');
     }
+
+
+    public function getPremium()
+    {
+        $pay_jp_secret = env('PAYJP_SECRET_KEY');
+        \Payjp\Payjp::setApiKey($pay_jp_secret);
+
+        $user = Auth::user();
+
+        $res = \Payjp\Charge::create(
+            [
+                "customer" => $user->token,
+                "amount" =>  300,
+                "currency" => 'jpy'
+            ]
+        );
+        if ($res) {
+            $user = Auth::user();
+            $user->user_type = 'premium';
+            $user->save();
+            return redirect()->route('home');
+        }
+    }
 }

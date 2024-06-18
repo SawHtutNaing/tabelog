@@ -29,7 +29,15 @@
                         <input type="text" class="form-control" id="total-price" name="total_price" readonly>
                     </div>
                     {{-- <button type="submit" class="btn btn-primary">{{ auth()->user()->hasFavoritedMeal($meal->id) ? 'Favorited' : 'Add to Favorites' }}</button> --}}
-    <button type="submit" class="btn btn-primary">Order</button>
+                    @auth
+                    
+                    @if(Auth::user()->user_type =='premium')
+                    <button type="submit" class="btn btn-primary">Order</button>
+
+                    @endif 
+
+                    @endauth
+                        
                 </form>
             </div>
         </div>
