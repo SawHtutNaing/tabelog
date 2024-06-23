@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\StoreExporter;
 use App\Filament\Resources\StoreResource\Pages;
 use App\Filament\Resources\StoreResource\RelationManagers;
 use App\Forms\Components\Review;
@@ -9,6 +10,7 @@ use App\Models\Caeegory;
 use App\Models\Category;
 use App\Models\Store;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\KeyValue;
 use Filament\Forms\Components\Select;
@@ -17,11 +19,19 @@ use Filament\Forms\Components\ViewField;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use pxlrbt\FilamentExcel\Actions\Tables\ExportAction;
+use pxlrbt\FilamentExcel\Exports\ExcelExport;
+
+// use Filament\Tables\Actions\ExportBulkAction;
+
+
+use Filament\Actions\Exports\Enums\ExportFormat;
 
 class StoreResource extends Resource
 {
@@ -37,12 +47,14 @@ class StoreResource extends Resource
 
                 TextInput::make('description'),
                 FileUpload::make('image'),
-                TextInput::make('lowest_price'),
-                TextInput::make('highest_price'),
-                TextInput::make('postal_code'),
+                TextInput::make('lowest_price')->numeric(),
+                TextInput::make('highest_price')->numeric(),
+                TextInput::make('postal_code')->numeric()->minLength(7),
                 TextInput::make('Address'),
-                TextInput::make('opening_time'),
-                TextInput::make('closing_time'),
+                DateTimePicker::make('opening_time'),
+                DateTimePicker::make('closing_time'),
+                TextInput::make('seating_capacity')->numeric(),
+
 
                 Select::make('category_id')->options(function (): array {
                     return Category::all()->pluck('name', 'id')->all();
@@ -55,9 +67,9 @@ class StoreResource extends Resource
                 TextInput::make('seat')->label('Left Seat')
                     ->afterStateHydrated(function (TextInput $component, $record) {
 
-                        $component->state($record->leftSeat());
+                        $component->state($record?->leftSeat());
                     })
-                    ->readOnly(),
+                    ->readOnly()->disabled(fn ($record) => !is_null($record)),
 
                 ViewField::make('reviews')->view('filament.forms.components.review')
                     // Review::make('reviews')
@@ -70,9 +82,12 @@ class StoreResource extends Resource
                     //     },
                     // ])
                     ->viewData([
-                        'reviews' => $form->model->reviews
+                        'reviews' => (is_object($form?->model) && is_array($form->model->reviews) && count($form->model->reviews) > 0)
+                            ? $form->model->reviews
+                            : []
 
                     ])
+                // ->disabledOn('edit')
 
             ]);
     }
@@ -81,6 +96,8 @@ class StoreResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('id')->sortable(),
+
                 TextColumn::make('name')->searchable(),
 
                 TextColumn::make('description'),
@@ -92,6 +109,8 @@ class StoreResource extends Resource
                 TextColumn::make('opening_time'),
                 TextColumn::make('closing_time'),
                 TextColumn::make('category.name')->searchable(),
+                TextColumn::make('category_id')->hidden(),
+
                 TextColumn::make('seating_capacity'),
                 TextColumn::make('seat')->label('Left Seat')
                     ->getStateUsing(function ($record) {
@@ -107,11 +126,27 @@ class StoreResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
+                // ExportBulkAction::make()
+                //     ->exporter(StoreExporter::class)
+                //     ->formats([
+                //         ExportFormat::Csv,
+                //     ])
+
+
+            ])
+
+            ->headerActions([
+                ExportAction::make()->exports([
+                    ExcelExport::make('table')->fromTable(),
+                    ExcelExport::make('form')->fromForm(),
+                ])
+                // ->withWriterType(\Maatwebsite\Excel\Excel::CSV),
             ]);
     }
 

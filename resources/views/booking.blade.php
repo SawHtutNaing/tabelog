@@ -23,6 +23,9 @@
                 <div class="card-body">
                     <p>Booking Date: {{ $booking->booking_time }}</p>
                     <p>Number of People: {{ $booking->people_count }}</p>
+                    <a href="{{route('cancel-booking',$booking->id)}}" class=" btn btn-danger ">
+                        cancel booking 
+                    </a>
                     {{-- <p>Total Price: {{ $booking->total_price }}</p> --}}
                     
                 </div>

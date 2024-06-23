@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('occupation')->nullable();
             $table->string('password');
             $table->rememberToken();
+            $table->string('user_type_admin_normal')->default('normal');
             $table->timestamps();
         });
 

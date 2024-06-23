@@ -13,7 +13,7 @@ $user = Auth::user();
     To becom premium member ,  you need to pay for 300  each month 
 </h1>
 @if(Auth::user()->user_type == 'normal')
-<form action="{{route('users.apply_permium')}}" method="POST" class=" from">
+<form action="{{route('users.apply_permium')}}" method="POST" class="from">
     @csrf
     <input type="number" value="300" readonly class=" form-control-input">
     <button class=" btn-primary">

@@ -4,16 +4,20 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 
 // use Illuminate\Auth\Passwords\CanResetPassword;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser
+
 {
     use HasFactory, Notifiable;
 
@@ -57,7 +61,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
-
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->user_type_admin_normal == 'admin';
+    }
     public function favoriteStores()
     {
         return $this->belongsToMany(Store::class, 'favorites');

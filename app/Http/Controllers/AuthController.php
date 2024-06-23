@@ -24,16 +24,17 @@ class AuthController extends Controller
     public function makeRegister(Request $request)
     {
 
-        // $request->validate([
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
-        //     'postal_code' => ['required', 'digits:7'],
-        //     'address' => ['required', 'string', 'max:255'],
-        //     'phone_number' => ['required', 'digits_between:10, 11'],
-        //     'birthday' => ['nullable', 'digits:8'],
-        //     'occupation' => ['nullable', 'string', 'max:255'],
-        // ]);
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'postal_code' => ['required', 'min:7'],
+            'address' => ['required', 'string', 'max:255'],
+            'phone_number' => ['required', 'min:11'],
+            'birthday' => ['nullable'],
+            'occupation' => ['nullable', 'string', 'max:255'],
+        ]);
+        $request->user_type_admin_normal = 'normal';
         $user =  User::create($request->all());
 
 

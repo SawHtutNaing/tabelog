@@ -38,16 +38,20 @@
                     </div>
                     <div class="mb-3">
                         <label for="postal_code" class="form-label">Your Postal Code </label>
-                        <input type="text" name="postal_code" id="postal_code" class="form-control" placeholder="postal code" required>
+                        <input type="number" name="postal_code" id="postal_code" class="form-control" placeholder="postal code" required minlength="7">
                     </div>
                     
                     <div class="mb-3">
                         <label for="phone_number" class="form-label">Your Phone </label>
-                        <input type="text" name="phone_number" id="phone_number" class="form-control" placeholder="phone number" required>
+                        <input type="text" name="phone_number" id="phone_number" class="form-control" placeholder="phone number" required minlength="11">
                     </div>
                     <div class="mb-3">
                         <label for="birthday" class="form-label">Your birthday</label>
                         <input type="date" name="birthday" id="birthday" class="form-control"  required>
+                    </div>
+                    <div class="mb-3">address
+                        <label for="birthday" class="form-label">Address</label>
+                        <input type="string" name="address" id="address" class="form-control"  required>
                     </div>
                     <div class="mb-3">
                         <label for="occupation" class="form-label">Your occupation</label>

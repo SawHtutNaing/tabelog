@@ -8,17 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $fillable = [
+        'name', 'image', 'description', 'lowest_price', 'highest_price', 'postal_code', 'Address', 'opening_time', 'closing_time', 'category_id', 'seating_capacity'
+    ];
     public static function categories()
     {
-        $stores = Store::all();
+        $stores = Category::all();
         $arr = [];
         foreach ($stores as $store) {
             // dd($store->getCategory());
             $arr[] =
                 [
                     'id' => $store->id,
-                    'category_name' => Category::where('id', $store->category_id)->first()->name
+                    'category_name' => $store->name
                 ];
         }
         return $arr;
@@ -43,9 +45,10 @@ class Store extends Model
     {
 
         $bookedSeats = $this->bookings()->sum('people_count');
-
-
-        $remainingSeats = $this->seating_capacity - $bookedSeats;
+        $remainingSeats = $this->seating_capacity;
+        if ($bookedSeats > 0) {
+            $remainingSeats =  $this->seating_capacity - $bookedSeats;
+        }
 
         // Ensure remaining seats is not negative
         return max(0, $remainingSeats);

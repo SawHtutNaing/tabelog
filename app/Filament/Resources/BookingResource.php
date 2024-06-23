@@ -6,6 +6,8 @@ use App\Filament\Resources\BookingResource\Pages;
 use App\Filament\Resources\BookingResource\RelationManagers;
 use App\Models\Booking;
 use Filament\Forms;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -24,7 +26,11 @@ class BookingResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // TextInput::make('user.name')->label('User'),
+                // TextInput::make('store.name')->label('Store'),
+                // TextInput::make('people_count'),
+
+                // DateTimePicker::make('booking_time'),
             ]);
     }
 
@@ -33,9 +39,9 @@ class BookingResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('user.name'),
-                TextColumn::make('meal.name'),
-                TextColumn::make('item_number'),
-                TextColumn::make('total_price'),
+                TextColumn::make('store.name'),
+                TextColumn::make('people_count'),
+
                 TextColumn::make('booking_time'),
 
 
@@ -44,7 +50,8 @@ class BookingResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -65,7 +72,7 @@ class BookingResource extends Resource
         return [
             'index' => Pages\ListBookings::route('/'),
             'create' => Pages\CreateBooking::route('/create'),
-            'edit' => Pages\EditBooking::route('/{record}/edit'),
+            // 'edit' => Pages\EditBooking::route('/{record}/edit'),
         ];
     }
 }

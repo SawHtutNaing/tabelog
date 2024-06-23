@@ -162,7 +162,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('booking', compact('bookings'));
     })->name('booking');
 
-
+    Route::get('cancel-booking/{booking}', [BookingController::class, 'destroy'])->name('cancel-booking');
 
     //
     // review section start 

@@ -31,18 +31,21 @@ class StoreSeeder extends Seeder
         foreach ($php_array as $item) {
             $categoies[] = $item['strArea'];
         }
+        $categoies = array_unique($categoies);
         foreach ($categoies as $category) {
             Category::create([
                 'name' => $category
             ]);
         }
+
         $stores = [];
+
         for ($i = 0; $i < count($php_array); $i++) {
             $lowest_price = rand(20, 50);
             $highest_price = rand(51, 100);
             // dd(Category::where('name', $php_array[$i]['strArea'])->get()->pluck('id'));
             $imageData = file_get_contents($php_array[$i]['strMealThumb']);
-            $result = file_put_contents(public_path('storage/' . $i . '.jpg'), $imageData);
+            $result = file_put_contents(public_path('storage/stores/' . $i . '.jpg'), $imageData);
 
             $stores[$i] = [
                 'name' => $restaurants[$i],
@@ -62,8 +65,7 @@ class StoreSeeder extends Seeder
 
 
             ];
-
-            Store::insert($stores);
         }
+        Store::insert($stores);
     }
 }
