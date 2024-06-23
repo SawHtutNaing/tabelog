@@ -22,6 +22,14 @@
                 <script type="text/javascript" src="https://checkout.pay.jp/" class="payjp-button" data-key="{{ ENV('PAYJP_PUBLIC_KEY') }}" data-on-created="onCreated" data-text="カードを更新する" data-submit-text="カードを更新する"></script>
                 @endif
             </form>
+            @if (!empty($card))
+
+            <form action="{{route('deleteCard')}}" method="POST">
+                @csrf
+                <input type="text" name="cardId" value="{{$card['id']}}" hidden>
+            <button class=" btn-danger mt-3 " type="submit">Delete Card </button>
+            </form>
+            @endif
         </div>
     </div>
 </main>

@@ -16,12 +16,14 @@
                           
                             
                         @guest
-                        <a href="{{route('auth.login')}}" class="nav-item nav-link">Login</a>    
+                        <a href="{{route('login')}}" class="nav-item nav-link">Login</a>    
                         <a href="{{route('auth.register')}}" class="nav-item nav-link">Register</a>    
                         @endguest
                             
-                            
+                            @auth
                             <a href="{{route('booking')}}" class="nav-item nav-link">Booking</a>
+                                
+                            @endauth
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
@@ -30,18 +32,28 @@
                                 </div>
                             </div>
                             @auth
-                            @if(Auth::user()->token == '')
-                            <a href="{{route('mypage.register_card')}}" class="nav-item nav-link">Apply Card </a>
+                            {{-- @if(Auth::user()->token == '') --}}
+                            <a href="{{route('mypage.register_card')}}" class="nav-item nav-link">My payment Card </a>
                             
-                            @endif
+                            {{-- @endif --}}
                             @endauth
                             @auth
-                            @if(Auth::user()->user_type == 'normal')
-                            <a href="{{route('users.apply_permium')}}" class="nav-item nav-link">Apply Premium </a>
+                            {{-- @if(Auth::user()->user_type == 'normal' && !Auth::user()->token == '') --}}
+                            <a href="{{route('users.apply_permium')}}" class="nav-item nav-link">Premium </a>
                             
-                            @endif
+                            {{-- @endif --}}
                             @endauth
                           
+                            @auth
+
+                            <a href="{{route('profile')}}" class="nav-item nav-link">Profile</a>
+                            @endauth
+                            @auth
+
+                            <a href="{{route('logout')}}" class="nav-item nav-link">Logout</a>
+                            @endauth
+
+                         
                         </div>
                     </div>
                 </div>

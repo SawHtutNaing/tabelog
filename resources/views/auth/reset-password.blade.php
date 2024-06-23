@@ -15,12 +15,13 @@
 
   <div class="text-center mb-4">
     {{-- <img src="{{ asset('storage/images/logo.jpg') }}" class="h-8" alt="Job Hub" /> --}}
-    <h2 class="h4 font-weight-bold text-dark mt-2">Sign in to your account</h2>
+    <h2 class="h4 font-weight-bold text-dark mt-2">Reset Your Password</h2>
   </div>
 
   <div class="container-sm w-100" style="max-width: 400px;">
-    <form action="{{route('login')}}" method="POST" autocomplete="off">
+    <form action="{{route('password.update')}}" method="POST" autocomplete="off">
       @csrf
+      <input type="text" name="token" hidden value="{{$token}}">
       <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
         <input id="email" name="email" type="email" required autocomplete="off" class="form-control" placeholder="Enter your email">
@@ -30,16 +31,16 @@
         <label for="password" class="form-label">Password</label>
         <input id="password" name="password" type="password" required class="form-control" placeholder="Enter your password">
       </div>
+      <div class="mb-3">
+        <label for="confirm-password" class="form-label">Confirm password</label>
+        <input type="password" name="password_confirmation" id="confirm-password" class="form-control" placeholder="••••••••" required>
+    </div>
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary w-100">Sign in</button>
       </div>
     </form>
 
-    <p class="text-center mt-3">
-      If you don't have an account, <a href="{{route('auth.register')}}" class="text-primary">register here</a>
-      If you don't have an account, <a href="{{route('auth.register')}}" class="text-primary">Forgot Password</a>
-    </p>
   </div>
 </div>
 @endsection

@@ -19,4 +19,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Meal::class);
     }
+
+    public function store()
+    {
+        return $this->belongsTo(Store::class);
+    }
 }

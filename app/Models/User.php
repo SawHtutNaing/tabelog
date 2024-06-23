@@ -3,11 +3,17 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\CanResetPassword;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
-class User extends Authenticatable
+// use Illuminate\Auth\Passwords\CanResetPassword;
+
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -20,6 +26,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'postal_code',
+        'address',
+        'phone_number',
+        'birthday',
+        'occupation',
+        'premium_register_date'
+
     ];
 
     /**
@@ -45,6 +58,11 @@ class User extends Authenticatable
         ];
     }
 
+    public function favoriteStores()
+    {
+        return $this->belongsToMany(Store::class, 'favorites');
+    }
+
 
     public function meals()
     {
@@ -52,6 +70,19 @@ class User extends Authenticatable
     }
     public function hasFavoritedMeal($mealId)
     {
-        return $this->meals()->where('meal_id', $mealId)->exists();
+        return $this->favoriteStores()->where('store_id', $mealId)->exists();
+    }
+    public function checkPremiumStatus()
+    {
+
+        if ($this->user_type === 'premium' && $this->premium_register_date !== null) {
+            $expiryDate = (new Carbon($this->premium_register_date))->addDays(30);
+
+
+            if (Carbon::now()->greaterThan($expiryDate)) {
+                $this->user_type = 'normal';
+                $this->save();
+            }
+        }
     }
 }

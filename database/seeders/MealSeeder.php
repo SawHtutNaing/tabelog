@@ -17,6 +17,7 @@ class MealSeeder extends Seeder
      */
     public function run(): void
     {
+
         $response = Http::get('https://www.themealdb.com/api/json/v1/1/search.php?s');
         $php_array = $response->json()['meals'];
         $categoies = [];

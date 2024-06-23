@@ -15,6 +15,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\DatePicker;
 
 class UserResource extends Resource
 {
@@ -27,7 +29,16 @@ class UserResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name'),
-                TextInput::make('user_type')
+                TextInput::make('email'),
+                TextInput::make('user_type'),
+                TextInput::make('postal_code'),
+                TextInput::make('address'),
+                TextInput::make('phone_number'),
+                DatePicker::make('birthday'),
+                TextInput::make('occupation'),
+                TextInput::make('user_type'),
+
+
             ]);
     }
 
@@ -36,7 +47,15 @@ class UserResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name'),
+                TextColumn::make('email')->searchable(),
                 TextColumn::make('user_type'),
+                TextColumn::make('postal_code'),
+                TextColumn::make('address'),
+                TextColumn::make('phone_number'),
+                TextColumn::make('birthday'),
+                TextColumn::make('occupation'),
+                TextColumn::make('user_type'),
+
 
 
             ])
@@ -45,6 +64,7 @@ class UserResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\ViewAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -55,9 +75,7 @@ class UserResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
@@ -65,6 +83,7 @@ class UserResource extends Resource
         return [
             'index' => Pages\ListUsers::route('/'),
             'create' => Pages\CreateUser::route('/create'),
+            'view' => Pages\ViewUser::route('/{record}'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
     }

@@ -12,16 +12,18 @@
         <div class="col-12 col-md-6 col-lg-4 my-4">
             <div class="card">
                 <div class="card-body d-flex flex-row">
-                    <h5 class="card-title font-weight-bold mb-2">{{ $booking->meal->name }}</h5>
+                    <h5 class="card-title font-weight-bold mb-2">{{ $booking->store->name }}</h5>
                 </div>
                 <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                    <img class="img-fluid" src="{{ $booking->meal->thumbnail }}" alt="Card image cap" />
+                    <img class="img-fluid" src="{{ asset('storage').'/'.$booking->store->image }}" />
+
+                    
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </div>
                 <div class="card-body">
-                    <p>Booking Date: {{ date('Y-m-d', strtotime($booking->booking_time)); }}</p>
-                    <p>Number of Items: {{ $booking->item_number }}</p>
-                    <p>Total Price: {{ $booking->total_price }}</p>
+                    <p>Booking Date: {{ $booking->booking_time }}</p>
+                    <p>Number of People: {{ $booking->people_count }}</p>
+                    {{-- <p>Total Price: {{ $booking->total_price }}</p> --}}
                     
                 </div>
             </div>
@@ -30,3 +32,4 @@
     </div>
 </div>
 @endsection
+booking
