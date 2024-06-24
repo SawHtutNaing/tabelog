@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\UserResource\Pages;
 
+use App\Filament\Imports\UserImporter;
 use App\Filament\Resources\UserResource;
 use Filament\Actions;
 
@@ -17,16 +18,17 @@ class ListUsers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            // Actions\CreateAction::make(),
+
 
         ];
     }
     protected function getActions(): array
     {
         return [
-            Actions\ImportAction::make()
-                ->importer(),
-            Actions\CreateAction::make(),
+            // Actions\ImportAction::make()
+            //     ->importer(),
+            // Actions\CreateAction::make(),
         ];
     }
 }

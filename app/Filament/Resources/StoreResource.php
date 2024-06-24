@@ -126,6 +126,9 @@ class StoreResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
+
 
             ])
             ->bulkActions([
@@ -144,7 +147,7 @@ class StoreResource extends Resource
             ->headerActions([
                 ExportAction::make()->exports([
                     ExcelExport::make('table')->fromTable(),
-                    ExcelExport::make('form')->fromForm(),
+                    // ExcelExport::make('form')->fromForm(),
                 ])
                 // ->withWriterType(\Maatwebsite\Excel\Excel::CSV),
             ]);

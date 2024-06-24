@@ -68,6 +68,8 @@ class UserResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\ViewAction::make(),
+                Tables\Actions\DeleteAction::make(),
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -76,6 +78,13 @@ class UserResource extends Resource
                 ExportBulkAction::make()
 
 
+
+            ])
+            ->headerActions([
+                ExportAction::make()->exports([
+                    ExcelExport::make('table')->fromTable(),
+                    // ExcelExport::make('form')->fromForm(),
+                ])
 
             ]);
     }
