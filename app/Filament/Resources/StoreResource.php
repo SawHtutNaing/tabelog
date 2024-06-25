@@ -46,7 +46,7 @@ class StoreResource extends Resource
                 TextInput::make('name'),
 
                 TextInput::make('description'),
-                FileUpload::make('image')->disk('public_stores')->directory('stores'),
+                FileUpload::make('image')->disk('public_stores'),
                 TextInput::make('lowest_price')->numeric(),
                 TextInput::make('highest_price')->numeric(),
                 TextInput::make('postal_code')->numeric()->minLength(7),
