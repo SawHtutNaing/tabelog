@@ -57,6 +57,14 @@ return [
             'throw' => false,
         ],
 
+        'public_stores' => [
+            'driver' => 'local',
+            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
+            'url' => env('APP_URL'), // Public URL path to access 'stores'
+            'visibility' => 'public',
+        ],
+
+
     ],
 
     /*

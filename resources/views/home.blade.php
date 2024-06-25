@@ -24,7 +24,7 @@
             </div>
             <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                 <a href="{{ route('meals.show', $item->id) }}">
-                    <img class="img-fluid" src="{{ asset('storage').'/'.$item->image }}" />
+                    <img class="img-fluid" src="{{ asset('').$item->image }}" />
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </a>
             </div>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
                     <a href="{{ route('meals.show', $item->id) }}">
-                        <img class="img-fluid" src="{{ asset('storage').'/'.$item->image }}" />
+                        <img class="img-fluid" src="{{ asset('').$item->image }}" />
                         <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                     </a>
                 </div>

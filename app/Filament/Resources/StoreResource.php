@@ -46,7 +46,7 @@ class StoreResource extends Resource
                 TextInput::make('name'),
 
                 TextInput::make('description'),
-                FileUpload::make('image'),
+                FileUpload::make('image')->disk('public_stores')->directory('stores'),
                 TextInput::make('lowest_price')->numeric(),
                 TextInput::make('highest_price')->numeric(),
                 TextInput::make('postal_code')->numeric()->minLength(7),
@@ -101,7 +101,7 @@ class StoreResource extends Resource
                 TextColumn::make('name')->searchable(),
 
                 TextColumn::make('description'),
-                ImageColumn::make('image'),
+                ImageColumn::make('image')->disk('public_stores'),
                 TextColumn::make('lowest_price'),
                 TextColumn::make('highest_price'),
                 TextColumn::make('postal_code'),

@@ -15,7 +15,7 @@
                     <h5 class="card-title font-weight-bold mb-2">{{ $booking->store->name }}</h5>
                 </div>
                 <div class="bg-image hover-overlay ripple rounded-0" data-mdb-ripple-color="light">
-                    <img class="img-fluid" src="{{ asset('storage').'/'.$booking->store->image }}" />
+                    <img class="img-fluid" src="{{ asset('').$booking->store->image }}" />
 
                     
                     <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>

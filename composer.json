@@ -52,9 +52,8 @@
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
         ] 
-,
 
-        "post-install-cmd": [    "rm -rf public/storage","ln -sr storage/app/public public/storage" ]
+        
     },
     
     "extra": {
