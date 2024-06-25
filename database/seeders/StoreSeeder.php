@@ -45,7 +45,7 @@ class StoreSeeder extends Seeder
             $highest_price = rand(51, 100);
             // dd(Category::where('name', $php_array[$i]['strArea'])->get()->pluck('id'));
             $imageData = file_get_contents($php_array[$i]['strMealThumb']);
-            $result = file_put_contents(url('storage/stores/' . $i . '.jpg'), $imageData);
+            $result = file_put_contents(public_path('stores/' . $i . '.jpg'), $imageData);
 
             $stores[$i] = [
                 'name' => $restaurants[$i],
