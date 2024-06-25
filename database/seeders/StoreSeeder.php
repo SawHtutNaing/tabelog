@@ -51,7 +51,8 @@ class StoreSeeder extends Seeder
                 'name' => $restaurants[$i],
                 'category_id' => Category::where('name', $php_array[$i]['strArea'])->pluck('id')->first(),
 
-                'image' => 'stores/' . $i . '.jpg',
+                // 'image' => 'stores/' . $i . '.jpg',
+                'image' => $i . '.jpg',
                 'description' => 'Offer Delicious Food',
                 'lowest_price' => $lowest_price,
                 'highest_price' => $highest_price,
