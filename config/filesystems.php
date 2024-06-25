@@ -31,26 +31,18 @@ return [
     'disks' => [
 
         'local' => [
-            // 'driver' => 'local',
-            // 'root' => storage_path('app/public'),
-            // 'url' => env('APP_URL') . '/storage',
-            // 'visibility' => 'public',
             'driver' => 'local',
-            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
-            'url' => env('APP_URL'), // Public URL path to access 'stores'
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
         ],
 
         'public' => [
-            // 'driver' => 'local',
-            // 'root' => storage_path('app/public'),
-            // 'url' => env('APP_URL') . '/storage',
-            // 'visibility' => 'public',
-            // 'throw' => false,
             'driver' => 'local',
-            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
-            'url' => env('APP_URL'), // Public URL path to access 'stores'
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
         's3' => [
@@ -67,8 +59,8 @@ return [
 
         'public_stores' => [
             'driver' => 'local',
-            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
-            'url' => env('APP_URL'), // Public URL path to access 'stores'
+            'root' => public_path('stores'), // Define the 'stores' directory inside the 'public' folder
+            'url' => env('APP_URL') . '/stores', // Public URL path to access 'stores'
             'visibility' => 'public',
         ],
 
