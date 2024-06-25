@@ -54,7 +54,7 @@
         ] 
 ,
 
-        "post-install-cmd": [ "ln -sr storage/app/public public/storage" ]
+        "post-install-cmd": [    "rm -rf public/storage","ln -sr storage/app/public public/storage" ]
     },
     
     "extra": {
