@@ -31,18 +31,26 @@ return [
     'disks' => [
 
         'local' => [
+            // 'driver' => 'local',
+            // 'root' => storage_path('app/public'),
+            // 'url' => env('APP_URL') . '/storage',
+            // 'visibility' => 'public',
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
+            'url' => env('APP_URL'), // Public URL path to access 'stores'
             'visibility' => 'public',
         ],
 
         'public' => [
+            // 'driver' => 'local',
+            // 'root' => storage_path('app/public'),
+            // 'url' => env('APP_URL') . '/storage',
+            // 'visibility' => 'public',
+            // 'throw' => false,
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL') . '/storage',
+            'root' => public_path(''), // Define the 'stores' directory inside the 'public' folder
+            'url' => env('APP_URL'), // Public URL path to access 'stores'
             'visibility' => 'public',
-            'throw' => false,
         ],
 
         's3' => [
