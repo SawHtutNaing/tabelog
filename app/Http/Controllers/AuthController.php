@@ -97,7 +97,7 @@ class AuthController extends Controller
         ]);
         $user = Auth::user();
         $data = $request->only([
-            'name', 'email', 'postal_code', 'address', 'phone_number', 'birthday', 'occupation'
+            'name', 'email', 'postal_code', 'address', 'phone_number', 'birthday', 'occupation', 'password'
 
         ]);
 

@@ -39,7 +39,8 @@ class UserResource extends Resource
                 TextInput::make('phone_number'),
                 DatePicker::make('birthday'),
                 TextInput::make('occupation'),
-                TextInput::make('user_type'),
+                // TextInput::make('user_type'),
+                TextInput::make('password')->hidden(Pages\ViewUser::isCurrentPage()),
 
 
             ]);
@@ -58,6 +59,7 @@ class UserResource extends Resource
                 TextColumn::make('birthday'),
                 TextColumn::make('occupation'),
                 TextColumn::make('user_type'),
+
 
 
 

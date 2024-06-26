@@ -38,7 +38,7 @@
 
     <p class="text-center mt-3">
       If you don't have an account, <a href="{{route('auth.register')}}" class="text-primary">register here</a>
-      If you don't have an account, <a href="{{route('auth.register')}}" class="text-primary">Forgot Password</a>
+      If you don't have an account, <a href="/forgot-password" class="text-primary">Forgot Password</a>
     </p>
   </div>
 </div>

@@ -6,11 +6,21 @@ $user = Auth::user();
 
 ?>
 <div>
-    apply for premium 
+    @if ($user->user_type == 'premium')
+
+        You are premium member .
+        
+    @elseif ($user->user_type == 'normal')
+    apply for premium .
+    @endif
 
 </div>
 <h1>
+    @if ($user->user_type == 'premium')
+
+    @elseif ($user->user_type == 'normal')
     To becom premium member ,  you need to pay for 300  each month 
+    @endif
 </h1>
 @if(Auth::user()->user_type == 'normal')
 <form action="{{route('users.apply_permium')}}" method="POST" class="from">

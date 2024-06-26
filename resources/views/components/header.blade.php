@@ -24,13 +24,7 @@
                             <a href="{{route('booking')}}" class="nav-item nav-link">Booking</a>
                                 
                             @endauth
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="blog.html" class="dropdown-item">Blog Grid</a>
-                                    <a href="single.html" class="dropdown-item">Blog Detail</a>
-                                </div>
-                            </div>
+          
                             @auth
                             {{-- @if(Auth::user()->token == '') --}}
                             <a href="{{route('mypage.register_card')}}" class="nav-item nav-link">My payment Card </a>

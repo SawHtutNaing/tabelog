@@ -18,7 +18,7 @@ class ListUsers extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            // Actions\CreateAction::make(),
+            Actions\CreateAction::make(),
 
 
         ];
@@ -28,7 +28,7 @@ class ListUsers extends ListRecords
         return [
             // Actions\ImportAction::make()
             //     ->importer(),
-            // Actions\CreateAction::make(),
+            Actions\CreateAction::make(),
         ];
     }
 }

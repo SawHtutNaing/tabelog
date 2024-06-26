@@ -42,12 +42,12 @@ class BookingController extends Controller
         //     ]
         // );
 
-        return redirect()->route('home');
+        return redirect()->route('booking');
     }
 
     public function destroy(Booking $booking)
     {
         $booking->delete();
-        return redirect()->route('bookingp');
+        return redirect()->route('booking');
     }
 }
