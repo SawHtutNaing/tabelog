@@ -27,9 +27,9 @@ class AppServiceProvider extends ServiceProvider
         if (App::environment(['production'])) {
             URL::forceScheme('https');
         }
-        FilamentView::registerRenderHook(
-            'panels::auth.login.form.after',
-            fn (): View => view('filament.login_extra')
-        );
+        // FilamentView::registerRenderHook(
+        //     'panels::auth.login.form.after',
+        //     fn (): View => view('filament.login_extra')
+        // );
     }
 }
