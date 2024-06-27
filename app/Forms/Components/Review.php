@@ -19,7 +19,7 @@ class Review extends Field
     public function Getstore($store)
     {
         $this->store = $store;
-        dd($this->store);
+        // dd($this->store);
         return $this;
     }
 

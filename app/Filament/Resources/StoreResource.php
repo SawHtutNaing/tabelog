@@ -82,9 +82,10 @@ class StoreResource extends Resource
                     //     },
                     // ])
                     ->viewData([
-                        'reviews' => (is_object($form?->model) && is_array($form->model->reviews) && count($form->model->reviews) > 0)
-                            ? $form->model->reviews
-                            : []
+                        // 'reviews' => (is_object($form?->model) && is_array($form->model->reviews) && count($form->model->reviews) > 0)
+                        //     ? $form->model->reviews
+                        //     : []
+                        'reviews' => $form->model->reviews
 
                     ])
                 // ->disabledOn('edit')
